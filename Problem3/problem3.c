@@ -26,8 +26,6 @@ void myreplace(FILE *fp,char *find, char * replace);
 int  main(int argc,char *argv[])
 {
 
-	printf("Start %i %s %s %s",argc,argv[0],argv[1],argv[2]);
-
 	/*	creating variables	
 */
 
@@ -36,25 +34,21 @@ int  main(int argc,char *argv[])
 	char *filename=strtok(argv[1]," \0");;
 	char *find=strtok(argv[2]," \0");;
 	char * replace;
-
 	/*	check if mygrep is called or myreplace	
 */
 
-	printf("\n%i\n",strcmp(argv[1],"./mygrep"));
 	char* op=strtok(argv[0]," \0");
-	printf("%s %li %li",op,strlen(op),strlen(argv[0]));
 	if(strcmp(op,"./mygrep")==0 )
 	{
-	//	if(argc != 3)
-	//	{-
+		if(argc != 3)
+		{
 			printf("usage\t./mygrep %s %s\n",filename,find);
-	//		exit(1);
-	//	}
+			exit(1);
+		}
 
 		behaviour = GREP;
-		printf("behaviour %i\n",behaviour);
 	}
-	else if(strcmp(argv[1],"./myreplace")==0 )
+	else if(strcmp(op,"./myreplace")==0 )
 	{
 		if(argc != 4)
 		{
@@ -100,7 +94,6 @@ void mygrep(FILE *fp,char *find)
 	char c1[500];
 	char *line;
 	char *str;
-	printf("Here\n");
 
 	/*	Add code to get strings from file
 */ 
@@ -119,17 +112,20 @@ void myreplace(FILE *fp,char *find, char * replace)
 {
 	char c1[500];
 	int flen = strlen(find);
-
-
+	int flag = 0;
+	int found=0;
+	int i;
+	char *part;
+	char ch[]=find[0];
 	while(fgets(c1,500,fp))
 	{
-		printf("%s",c1);
 		/*	Add your code here to search a string find on string c1 readed from file	
-*/
-//		if(/*	found the string 	*/)
-//		{
-			/*	replace the finded string with replace string	*/
-//		}
+*/		
+		if(strstr(c1,find))
+		{
+			
+			
+		}
 	}
 
 
