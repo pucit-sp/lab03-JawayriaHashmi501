@@ -7,7 +7,8 @@
 #include<stdio.h>
 #include<string.h>
 #include <stdlib.h>
-
+# define GREP 1
+# define REPLACE 2
 /*	
 **	This function take file pointer as paramter to read content from and 
 **	char pointer as an second argument which points to string to search in file
@@ -25,29 +26,35 @@ void myreplace(FILE *fp,char *find, char * replace);
 int  main(int argc,char *argv[])
 {
 
+	printf("Start %i %s %s %s",argc,argv[0],argv[1],argv[2]);
 
 	/*	creating variables	
 */
 
 	int behaviour;
 	FILE *fp;
-	char *filename=argv[1];
-	char *find=argv[2];
+	char *filename=strtok(argv[1]," \0");;
+	char *find=strtok(argv[2]," \0");;
 	char * replace;
 
 	/*	check if mygrep is called or myreplace	
 */
-	if(/*	check if the name of executable is mygrep	*/ )
+
+	printf("\n%i\n",strcmp(argv[1],"./mygrep"));
+	char* op=strtok(argv[0]," \0");
+	printf("%s %li %li",op,strlen(op),strlen(argv[0]));
+	if(strcmp(op,"./mygrep")==0 )
 	{
-		if(argc != 3)
-		{
-			printf("usage\t./mygrep filename <string-to-search>\n");
-			exit(1);
-		}
+	//	if(argc != 3)
+	//	{-
+			printf("usage\t./mygrep %s %s\n",filename,find);
+	//		exit(1);
+	//	}
 
 		behaviour = GREP;
+		printf("behaviour %i\n",behaviour);
 	}
-	else if(/*	check if the name of executable is myreplace	*/)
+	else if(strcmp(argv[1],"./myreplace")==0 )
 	{
 		if(argc != 4)
 		{
@@ -68,6 +75,8 @@ int  main(int argc,char *argv[])
 */
 
 	fp=fopen(filename,"rt");
+	if(fp==NULL)
+		printf("Couldn't Open file");
 
 	if(behaviour == GREP)
 	{
@@ -89,12 +98,16 @@ int  main(int argc,char *argv[])
 void mygrep(FILE *fp,char *find)
 {
 	char c1[500];
+	char *line;
+	char *str;
+	printf("Here\n");
 
 	/*	Add code to get strings from file
 */ 
-	while(/*	read a string from file*/)
+	while(fgets(c1,500,fp))
 	{
-		/*	Add your code here to search a string find on string c1 readed from file	*/
+		if(strstr(c1,find))
+			printf("%s",c1);
 	}
 }
 
@@ -108,14 +121,15 @@ void myreplace(FILE *fp,char *find, char * replace)
 	int flen = strlen(find);
 
 
-	while(/*	read a string from file*/)
+	while(fgets(c1,500,fp))
 	{
+		printf("%s",c1);
 		/*	Add your code here to search a string find on string c1 readed from file	
 */
-		if(/*	found the string 	*/)
-		{
+//		if(/*	found the string 	*/)
+//		{
 			/*	replace the finded string with replace string	*/
-		}
+//		}
 	}
 
 
